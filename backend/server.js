@@ -92,7 +92,6 @@ app.post("/newdevice", async (req, res) => {
         res.status(500).json({ message: "Error adding device" });
     }
 });
-
 app.post("/newroom", async (req, res) => {
     const { email, room } = req.body;
     if (!email || !room) {
@@ -111,6 +110,7 @@ app.post("/newroom", async (req, res) => {
         res.status(500).json({ message: "Error setting up room" });
     }
 });
+
 
 app.post('/deletedevice', async (req, res) => {
     const { email, device } = req.body;
@@ -265,6 +265,7 @@ wss.on('connection', (ws) => {
         });
     });
 });
+
 
 server.listen(8080, () => {
     console.log('Server is running on http://localhost:8080');

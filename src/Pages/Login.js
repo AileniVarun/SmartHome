@@ -5,8 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useUser } from '../Context/UserContext';
 
 
-function Login() {
-
+function Login({ triggerSplashScreen }) { // Add triggerSplashScreen prop
   const [data, setdata] = useState({ email: '', password: '' });
   const navigate = useNavigate();
   const { setUser } = useUser();
@@ -24,12 +23,19 @@ function Login() {
       if (response.ok) {
         const userdata = await response.json();
         setUser(userdata);
+        
+        // Trigger splash screen before navigating
+        if (triggerSplashScreen) {
+          triggerSplashScreen();
+        }
+        
         navigate("/dashboard");
       } else {
-        alert("Login Falied,Invalid Credentials")
+        alert("Login Failed, Invalid Credentials")
       }
     } catch (error) {
       console.log(error);
+      alert("An error occurred during login");
     }
   }
 

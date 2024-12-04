@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Tabs, Tab, Box, IconButton } from '@mui/material';
-import {Notifications } from '@mui/icons-material';
+import { Notifications } from '@mui/icons-material';
 import Light from "../Components/Light";
 import Fan from "../Components/Fan";
 import AC from "../Components/AC";
@@ -12,14 +12,19 @@ import { useUser } from "../Context/UserContext";
 
 function Dashboard() {
   const [value, setValue] = useState(0);
+  const [isVisible, setIsVisible] = useState(false); // State for fade-in effect
   const { user } = useUser();
+
+  useEffect(() => {
+    setIsVisible(true); // Set to true to trigger fade-in when component mounts
+  }, []);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   return (
-    <div className="container mt-4">
+    <div className={`container mt-4 dashboard ${isVisible ? "fade-in" : ""}`}>
       <section>
         <div className="d-flex justify-content-between mb-3">
           <div>
@@ -35,9 +40,9 @@ function Dashboard() {
       <section>
         <div>
           <div className="row mt-4">
-            <Temperature/>
-            <Humidity/>
-            <Voice/>
+            <Temperature />
+            <Humidity />
+            <Voice />
           </div>
         </div>
       </section>

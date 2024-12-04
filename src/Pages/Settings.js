@@ -3,6 +3,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import EmailIcon from '@mui/icons-material/Email';
 import { TextField, MenuItem, Select, InputLabel, FormControl, Button } from '@mui/material';
 import { useUser } from "../Context/UserContext";
+import '../Styles/fade.css';
 
 function Settings() {
   const { user } = useUser();
